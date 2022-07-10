@@ -1,0 +1,123 @@
+" Emulated Vim Plugins
+" IdeaVim extensions emulate plugins of the original Vim. In order to use IdeaVim extensions, you have to enable them via this command
+Plug '<extension-github-reference>'
+
+scriptencoding utf-8
+set enc=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf8,prc
+
+" leader键
+let mapleader = ","
+
+nnoremap <leader>ev :e C:/Users/dongl/.ideavimrc<CR>
+nnoremap <leader>wv :w! C:/Users/dongl/.ideavimrc<CR>
+nnoremap <leader>sv :source C:/Users/dongl/.ideavimrc<CR>
+nnoremap x "_x
+vnoremap x "_x
+" Yank to the end of line,复制当前光标位置到行尾的内容
+nnoremap Y y$
+" Move to the start of line
+nnoremap H ^
+" Move to the end of line
+nnoremap L $
+vnoremap H ^
+vnoremap L $
+
+set so=5
+" 设置命令历史记录条数
+set history=5000
+" 在状态栏显示正在输入的命令
+set showcmd
+set showmode
+
+" Vim 的默认寄存器和系统剪贴板共享
+set clipboard+=unnamed
+
+" Use Idea to join lines smartly
+set ideajoin
+" 模拟surround
+set surround
+" Multiple cursors support
+set multiple-cursors "命令<A-n>, <A-x>, <A-p>, g<A-n>
+" easyMotion 模拟，额外依赖插件：AceJump,IdeaVim-EasyMotion
+set easymotion
+"map / <Plug>(easymotion-sn)
+"omap / <Plug>(easymotion-tn)
+
+" 注释插件模拟 gcc注释当前行（普通模式）
+set commentary
+" 高亮选中的复制区域
+set highlightedyank
+set ReplaceWithRegister
+set NERDTree
+map <leader>e :action SelectInProjectView<CR>
+nnoremap <leader>d :NERDTreeFocus<CR>
+"map <c-t> :NERDTree<CR>
+nnoremap <leader>nt <ESC>:NERDTreeToggle<CR>
+set keep-english-in-normal
+set keep-english-in-normal-and-restore-in-insert
+" 设置没有声音
+:set noeb
+:set vb t_vb=
+" Quit insert mode
+inoremap jj <Esc>
+" Quit visual mode
+vnoremap v <Esc>
+
+" select模式下复制
+if has("clipboard")
+    vnoremap <C-C> "+y
+endif
+
+" 设置文内智能搜索提示
+" 高亮search命中的文本
+set hlsearch
+" 打开增量搜索模式,随着键入即时搜索
+set incsearch
+" 搜索时忽略大小写
+" set ignorecase
+" 有一个或以上大写字母时仍大小写敏感
+set smartcase
+" 每次查找替换后 Vim 停止高亮
+set nohighlight
+" 关闭兼容vi
+set nocompatible
+" 将制表符扩展为空格
+set expandtab
+
+"colorscheme"
+set t_Co=256
+" colorscheme monokai
+colorscheme badwolf
+
+" disable the fucking sounds
+set visualbell
+set noerrorbells
+
+
+inoremap <C-A> <Esc>^i
+inoremap <C-E> <Esc>$a
+
+inoremap <C-J> <Esc>o
+inoremap <C-K> <Esc>O
+
+inoremap <C-L> <Right>
+inoremap <C-H> <Left>
+
+"del current char
+inoremap <C-D>x <Esc>lxi
+"del current word
+inoremap <C-D>w <Esc>ldwi
+"del current line
+inoremap <C-D>l <Esc>ddi
+"del content from x to line end
+inoremap <C-D>e <Esc>lc$
+"del content from x to line begin
+inoremap <C-D>a <Esc>lc^
+
+"copy and paste
+nnoremap <leader>y "*y
+nnoremap <leader>p "*p
+nnoremap <leader>P "0p
+vnoremap Y "+y
