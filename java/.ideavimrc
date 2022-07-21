@@ -10,91 +10,80 @@ set fileencodings=ucs-bom,utf8,prc
 " leader键
 let mapleader = ","
 
+""" Common settings -------------------------
+set so=5 
+set history=5000 " 设置命令历史记录条数
+set showcmd " 在状态栏显示正在输入的命令
+set showmode " 在状态栏显示vim模式
+set clipboard+=unnamed " Vim 的默认寄存器和系统剪贴板共享
+set hlsearch " 设置文内智能搜索提示 高亮search命中的文本
+set incsearch " 打开增量搜索模式,随着键入即时搜索
+"set ignorecase " 搜索时忽略大小写
+set smartcase " 有一个或以上大写字母时仍大小写敏感
+set nohighlight " 每次查找替换后 Vim 停止高亮
+set nocompatible " 关闭兼容vi
+set expandtab " 将制表符扩展为空格
+set t_Co=256 "colorscheme"
+colorscheme badwolf " colorscheme monokai
+"set keep-english-in-normal
+set keep-english-in-normal-and-restore-in-insert
+:set noeb " 设置没有声音
+:set vb t_vb=
+set visualbell " disable the fucking sounds
+set noerrorbells
+
+""" Idea specific settings ------------------
+set ideajoin " 使用命令-J
+set ideastatusicon=gray
+set idearefactormode=keep
+
+""" Plugins  --------------------------------
+set surround " 模拟surround
+set multiple-cursors "Multiple cursors support-<A-n>, <A-x>, <A-p>, g<A-n>
+set easymotion " easyMotion 模拟，额外依赖插件：AceJump,IdeaVim-EasyMotion
+set commentary " 注释插件模拟 gcc注释当前行
+set argtextobj
+set textobj-entire
+set highlightedyank " 高亮选中的复制区域
+set ReplaceWithRegister "gr grr
+set NERDTree
+
+""" Plugin settings -------------------------
+map <leader>e :action SelectInProjectView<CR>
+nnoremap <leader>d :NERDTreeFocus<CR>
+nnoremap <leader>nt <ESC>:NERDTreeToggle<CR>
+let g:argtextobj_pairs="[:],(:),<:>"
+
+"""leader Mappings --------------------------------
 nnoremap <leader>ev :e C:/Users/dongl/.ideavimrc<CR>
 nnoremap <leader>wv :w! C:/Users/dongl/.ideavimrc<CR>
 nnoremap <leader>sv :source C:/Users/dongl/.ideavimrc<CR>
-nnoremap x "_x
-vnoremap x "_x
-" Yank to the end of line,复制当前光标位置到行尾的内容
-nnoremap Y y$
-" Move to the start of line
-nnoremap H ^
-" Move to the end of line
-nnoremap L $
-vnoremap H ^
-vnoremap L $
+nnoremap <leader>mb :action XDebugger.MuteBreakpoints<CR> " 将断点取消
+nnoremap <leader>gb :action Git.CompareWithBranch<CR> " 与其他分支比较
+nnoremap <leader>gr :action Compare.Selected<CR> " 与当前分支之前的git版本比较
+nnoremap <leader>r :action RecentFiles<CR> " 查找最近打开的文件
+nnoremap <leader>nn :action GotoNextError<CR> " 跳转到下一个错误
+nnoremap <leader>nb :action GotoPreviousError<CR> " 跳转到上一个错误
+nnoremap <leader>fdb :action GotoDatabaseObject<CR> " 搜索数据库对象
 
-set so=5
-" 设置命令历史记录条数
-set history=5000
-" 在状态栏显示正在输入的命令
-set showcmd
-set showmode
-
-" Vim 的默认寄存器和系统剪贴板共享
-set clipboard+=unnamed
-
-" Use Idea to join lines smartly
-set ideajoin
-" 模拟surround
-set surround
-" Multiple cursors support
-set multiple-cursors "命令<A-n>, <A-x>, <A-p>, g<A-n>
-" easyMotion 模拟，额外依赖插件：AceJump,IdeaVim-EasyMotion
-set easymotion
-"map / <Plug>(easymotion-sn)
-"omap / <Plug>(easymotion-tn)
-
-" 注释插件模拟 gcc注释当前行（普通模式）
-set commentary
-" 高亮选中的复制区域
-set highlightedyank
-set ReplaceWithRegister
-set NERDTree
-map <leader>e :action SelectInProjectView<CR>
-nnoremap <leader>d :NERDTreeFocus<CR>
-"map <c-t> :NERDTree<CR>
-nnoremap <leader>nt <ESC>:NERDTreeToggle<CR>
-set keep-english-in-normal
-set keep-english-in-normal-and-restore-in-insert
-" 设置没有声音
-:set noeb
-:set vb t_vb=
+"""keymap Mappings --------------------------------
 " Quit insert mode
 inoremap jj <Esc>
 " Quit visual mode
 vnoremap v <Esc>
 
-" select模式下复制
-if has("clipboard")
-    vnoremap <C-C> "+y
+if has("clipboard") 
+    vnoremap <C-C> "+y " select模式下复制
 endif
 
-" 设置文内智能搜索提示
-" 高亮search命中的文本
-set hlsearch
-" 打开增量搜索模式,随着键入即时搜索
-set incsearch
-" 搜索时忽略大小写
-" set ignorecase
-" 有一个或以上大写字母时仍大小写敏感
-set smartcase
-" 每次查找替换后 Vim 停止高亮
-set nohighlight
-" 关闭兼容vi
-set nocompatible
-" 将制表符扩展为空格
-set expandtab
-
-"colorscheme"
-set t_Co=256
-" colorscheme monokai
-colorscheme badwolf
-
-" disable the fucking sounds
-set visualbell
-set noerrorbells
-
+nnoremap x "_x
+vnoremap x "_x
+nnoremap Y y$ " Yank to the end of line
+nnoremap H ^ " Move to the start of line
+nnoremap L $ " Move to the end of line
+vnoremap H ^
+vnoremap L $
+nnoremap X vc " X删除当前字符并进入插入模式
 
 inoremap <C-A> <Esc>^i
 inoremap <C-E> <Esc>$a
@@ -102,19 +91,11 @@ inoremap <C-E> <Esc>$a
 inoremap <C-J> <Esc>o
 inoremap <C-K> <Esc>O
 
-inoremap <C-L> <Right>
-inoremap <C-H> <Left>
-
-"del current char
-inoremap <C-D>x <Esc>lxi
-"del current word
-inoremap <C-D>w <Esc>ldwi
-"del current line
-inoremap <C-D>l <Esc>ddi
-"del content from x to line end
-inoremap <C-D>e <Esc>lc$
-"del content from x to line begin
-inoremap <C-D>a <Esc>lc^
+inoremap <C-X>x <Esc>lxi "del current char
+inoremap <C-X>w <Esc>ldwi "del current word
+inoremap <C-X>l <Esc>ddi "del current line
+inoremap <C-X>e <Esc>lc$ "del content from x to line end
+inoremap <C-X>a <Esc>lc^ "del content from x to line begin
 
 "copy and paste
 nnoremap <leader>y "*y
