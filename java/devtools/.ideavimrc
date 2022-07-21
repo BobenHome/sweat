@@ -11,7 +11,7 @@ set fileencodings=ucs-bom,utf8,prc
 let mapleader = ","
 
 """ Common settings -------------------------
-set so=5 
+set so=5
 set history=5000 " 设置命令历史记录条数
 set showcmd " 在状态栏显示正在输入的命令
 set showmode " 在状态栏显示vim模式
@@ -72,18 +72,21 @@ inoremap jj <Esc>
 " Quit visual mode
 vnoremap v <Esc>
 
-if has("clipboard") 
-    vnoremap <C-C> "+y " select模式下复制
+if has("clipboard")
+    " select模式下复制
+    vnoremap <C-C> "+y
 endif
 
 nnoremap x "_x
 vnoremap x "_x
-nnoremap Y y$ " Yank to the end of line
-nnoremap H ^ " Move to the start of line
-nnoremap L $ " Move to the end of line
+"Move to the start of line
+nnoremap H ^
+" Move to the end of line
+nnoremap L $
 vnoremap H ^
 vnoremap L $
-nnoremap X vc " X删除当前字符并进入插入模式
+" X删除当前字符并进入插入模式
+nnoremap X vc
 
 inoremap <C-A> <Esc>^i
 inoremap <C-E> <Esc>$a
@@ -91,14 +94,21 @@ inoremap <C-E> <Esc>$a
 inoremap <C-J> <Esc>o
 inoremap <C-K> <Esc>O
 
-inoremap <C-X>x <Esc>lxi "del current char
-inoremap <C-X>w <Esc>ldwi "del current word
-inoremap <C-X>l <Esc>ddi "del current line
-inoremap <C-X>e <Esc>lc$ "del content from x to line end
-inoremap <C-X>a <Esc>lc^ "del content from x to line begin
+"del current char
+inoremap <C-X>x <Esc>lxi
+"del current word
+inoremap <C-X>w <Esc>ldwi
+"del current line
+inoremap <C-X>l <Esc>ddi
+"del content from x to line end
+inoremap <C-X>e <Esc>lc$
+"del content from x to line begin
+inoremap <C-X>a <Esc>lc^
 
 "copy and paste
 nnoremap <leader>y "*y
 nnoremap <leader>p "*p
 nnoremap <leader>P "0p
+" Yank to the end of line
+nnoremap Y y$
 vnoremap Y "+y
