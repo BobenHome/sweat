@@ -40,7 +40,7 @@ set idearefactormode=keep
 """ Plugins  --------------------------------
 set surround " 模拟surround
 set multiple-cursors "Multiple cursors support-<A-n>, <A-x>, <A-p>, g<A-n>
-set easymotion " easyMotion 模拟，额外依赖插件：AceJump,IdeaVim-EasyMotion
+set easymotion " easyMotion 模拟，额外依赖插件：AceJump,IdeaVim-EasyMotion <Leader><Leader>s <Leader><Leader>f <Leader><Leader>w <Leader><Leader>b
 set commentary " 注释插件模拟 gcc注释当前行
 set argtextobj
 set textobj-entire
