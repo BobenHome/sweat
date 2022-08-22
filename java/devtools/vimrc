@@ -1,0 +1,202 @@
+" All system-wide defaults are set in $VIMRUNTIME/archlinux.vim (usually just
+" /usr/share/vim/vimfiles/archlinux.vim) and sourced by the call to :runtime
+" you can find below.  If you wish to change any of those settings, you should
+" do it in this file (/etc/vimrc), since archlinux.vim will be overwritten
+" everytime an upgrade of the vim packages is performed.  It is recommended to
+" make changes after sourcing archlinux.vim since it alters the value of the
+" 'compatible' option.
+
+" This line should not be removed as it ensures that various options are
+" properly set to work with the Vim-related packages.
+runtime! archlinux.vim
+
+" If you prefer the old-style vim functionalty, add 'runtime! vimrc_example.vim'
+" Or better yet, read /usr/share/vim/vim80/vimrc_example.vim or the vim manual
+" and configure vim to your own liking!
+
+" do not load defaults if ~/.vimrc is missing
+"let skip_defaults_vim=1
+" leader键
+let mapleader = ","
+" 编码设置
+set encoding=utf-8
+set fileencodings=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936,utf-16,big5,euc-jp,latin1
+set langmenu=zn_CN.UTF-8
+set helplang=cn
+" 语言设置
+syntax on
+set number
+" 设置颜色主题
+colorscheme torte
+" 设置字体
+set guifont=Menlo:h16:cANSI
+
+" Tab键的宽度
+set tabstop=4
+
+"  统一缩进为4
+set softtabstop=4
+set shiftwidth=4
+
+" 不要用空格代替制表符
+set noexpandtab
+
+" 历史纪录数
+set history=50
+
+" 搜索逐字符高亮
+set hlsearch
+set incsearch
+
+" 高亮显示对应的括号
+set showmatch
+
+" 去掉buffer中吴内容行的~
+set fillchars=eob:\ 
+" 不需要备份
+set nobackup
+" 禁止生成临时文件
+set noswapfile
+" 共享剪贴板
+set clipboard=unnamed
+" 去掉vi一致性
+set nocompatible
+" 解决中文标点显示的问题
+set ambiwidth=double
+" 不自动折行
+set nowrap
+" 输入时隐藏光标
+set mousehide
+" 启用终端真色
+set termguicolors
+" 不要闪烁
+set novisualbell
+set showcmd
+set completeopt=longest,menu
+" auto read when file is changed from outside
+set autoread
+" ignore these files while expanding wild chars
+set wildignore=*.o,*.class,*.pyc,*.elc,*.a,*.lib
+" auto indentation
+set autoindent
+" copy the previous indentation
+set copyindent
+" start wild expansion in the command line using <TAB>
+set wildchar=<TAB>
+" wild char completion menu
+set wildmenu
+set hidden
+
+"Mode Settings
+"let &t_SI.="\e[5 q" "SI = INSERT mode
+"let &t_SR.="\e[4 q" "SR = REPLACE mode
+"let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
+
+if &term =~ "xterm"
+	let &t_SI = "\<Esc>[5 q"
+    let &t_SR = "\<Esc>[4 q"
+    let &t_EI = "\<Esc>[1 q"
+endif
+
+if exists('$TMUX')
+    let &t_SI .= "\e[5 q"
+    let &t_SR .= "\e[4 q"
+	let &t_EI .= "\e[1 q"
+endif
+
+"Cursor settings:
+"  1 -> blinking block
+"  2 -> solid block
+"  3 -> blinking underscore
+"  4 -> solid underscore
+"  5 -> blinking vertical bar
+"  6 -> solid vertical bar
+
+nnoremap <SPACE> <Nop>
+
+nnoremap x "_x
+vnoremap x "_x
+"Move to the start of line
+nnoremap H ^
+" Move to the end of line
+nnoremap L $
+vnoremap H ^
+vnoremap L $
+" X删除当前字符并进入插入模式
+nnoremap X vc
+
+inoremap <C-A> <Esc>^i
+inoremap <C-E> <Esc>$a
+
+" insert模式映射
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+
+inoremap <C-I>j <Esc>o
+inoremap <C-I>k <Esc>O
+inoremap <C-D>d <Esc>yypa
+
+"del current char
+inoremap <C-X>x <Esc>lxi
+"del current word
+inoremap <C-X>w <Esc>ldwi
+"del current line
+inoremap <C-X>l <Esc>ddi
+"del content from x to line end
+inoremap <C-X>e <Esc>lc$
+"del content from x to line begin
+inoremap <C-X>a <Esc>lc^
+
+"copy and paste
+nnoremap <leader>y "*y
+nnoremap <leader>p "*p
+nnoremap <leader>P "0p
+" Yank to the end of line
+nnoremap Y y$
+vnoremap Y "+y
+" 清楚搜索高亮
+nnoremap <esc> :noh<return><esc>
+
+
+" pluin
+call plug#begin()
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+	Plug 'ctrlpvim/ctrlp.vim'
+call plug#end()
+
+" -----------------Pluin settings-----------------------
+" -----ctrlp-----
+" search files
+nmap <leader>xf :CtrlP<CR>
+" search file from project root
+nmap <leader>kk :CtrlPRoot<CR>
+" switch buffer
+nmap <leader>xb :CtrlPBuffer<CR>
+nmap <leader>gt :CtrlPTag<CR>
+nmap <leader>bq :bp <BAR> bd #<CR>
+nmap <leader>bn :bnext<CR>
+nmap <leader>bp :bprevious<CR>
+
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=15
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+" -----artline-----
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail' " 只显示文件名
+let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#tabline#fnametruncate = 16
+let g:airline#extensions#tabline#fnamecollapse = 2
+let g:airline#extensions#tabline#buffer_idx_mode = 1
