@@ -1,0 +1,70 @@
+{
+    "editor.minimap.enabled": false,
+    "window.commandCenter": true,
+    "editor.mouseWheelZoom": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.fontSize": 16,
+    "files.autoSave": "onFocusChange",
+    "editor.tabCompletion": "on",
+    "workbench.startupEditor": "none",
+    "files.watcherExclude": {
+        "**/.bloop": true,
+        "**/.metals": true,
+        "**/.ammonite": true,
+        "**/target": true
+    },
+    "metals.customRepositories": [
+        "https://maven.aliyun.com/repository/central"
+    ],
+    "window.enableMenuBarMnemonics": false,
+    "editor.detectIndentation": false,
+    "vim.vimrc.enable": true,
+    "vim.vimrc.path": "C:/liang-home/sweat/java/devtools/vimrc",
+    // "workbench.colorTheme": "GitHub Dark Colorblind (Beta)",
+    "workbench.colorTheme": "GitHub Dark Dimmed",
+    "explorer.confirmDelete": false,
+    "metals.serverVersion": "0.11.8+40-1ad66649-SNAPSHOT",
+    "metals.excludedPackages": [],
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-b>": false,
+        "<C-c>": false,
+        "<C-d>": false,
+        "<C-e>": false,
+        "<C-f>": false,
+        "<C-g>": false,
+        // "<C-i>": false,
+        "<C-m>": false,
+        // "<C-n>": false,
+        "<C-o>": false,
+        // "<C-p>": false,
+        "<C-q>": false,
+        "<C-r>": false,
+        "<C-s>": false,
+        "<C-t>": false,
+        "<C-u>": false,
+        "<C-v>": false,
+        "<C-w>": false,
+        "<C-y>": false,
+        "<C-z>": false
+    },
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": [
+                    //following will be in italic
+                    "comment",
+                    "function",
+                    "entity.name.type.class", //class names
+                    "constant", //String, Number, Boolean…, this, super
+                    "storage", //static keyword
+                    "keyword" //import, export, return…
+                ],
+                "settings": {
+                    "fontStyle": "italic"
+                }
+            }
+        ]
+    },
+    "git.autofetch": true
+}
