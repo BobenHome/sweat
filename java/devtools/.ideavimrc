@@ -34,13 +34,13 @@ set noerrorbells
 
 """ Idea specific settings ------------------
 set ideajoin " 使用命令-J
-set ideastatusicon=gray
+"set ideastatusicon=gray
 set idearefactormode=keep
 
 """ Plugins  --------------------------------
 set surround " 模拟surround
 set multiple-cursors "Multiple cursors support-<A-n>, <A-x>, <A-p>, g<A-n>
-set easymotion " easyMotion 模拟，额外依赖插件：AceJump,IdeaVim-EasyMotion <Leader><Leader>s <Leader><Leader>f <Leader><Leader>w <Leader><Leader>b
+set easymotion " easyMotion 模拟，额外依赖插件：AceJump,IdeaVim-EasyMotion
 set commentary " 注释插件模拟 gcc注释当前行
 set argtextobj
 set textobj-entire
@@ -65,10 +65,11 @@ nnoremap <leader>r :action RecentFiles<CR> " 查找最近打开的文件
 nnoremap <leader>nn :action GotoNextError<CR> " 跳转到下一个错误
 nnoremap <leader>nb :action GotoPreviousError<CR> " 跳转到上一个错误
 nnoremap <leader>fdb :action GotoDatabaseObject<CR> " 搜索数据库对象
+nnoremap <leader>cd :action ChooseDebugConfiguration<CR>
 
 """keymap Mappings --------------------------------
 " Quit insert mode
-inoremap jj <Esc>
+" inoremap jj <Esc>
 " Quit visual mode
 vnoremap v <Esc>
 
@@ -88,11 +89,16 @@ vnoremap L $
 " X删除当前字符并进入插入模式
 nnoremap X vc
 
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+
 inoremap <C-A> <Esc>^i
 inoremap <C-E> <Esc>$a
 
-inoremap <C-J> <Esc>o
-inoremap <C-K> <Esc>O
+inoremap <C-I>j <Esc>o
+inoremap <C-I>k <Esc>O
 
 "del current char
 inoremap <C-X>x <Esc>lxi
