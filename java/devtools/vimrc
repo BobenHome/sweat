@@ -120,8 +120,14 @@ vnoremap x "_x
 nnoremap H ^
 " Move to the end of line
 nnoremap L $
+nnoremap dL d$
+nnoremap dH d^
+nnoremap yH y^
+nnoremap yL y$
 vnoremap H ^
 vnoremap L $
+vnoremap yL y$
+vnoremap yH y^
 " X删除当前字符并进入插入模式
 nnoremap X vc
 
